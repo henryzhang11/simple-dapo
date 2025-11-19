@@ -30,15 +30,13 @@ The system operates using two main types of Ray actors that communicate with eac
 Run the following commands to setup the environment and try the script yourself.
 
 ```bash
-# create and activate virtual environment
-python3 -m venv rlenv && source rlenv/bin/activate
 # accelerate "wget"
 sudo apt-get update && sudo apt-get install -y aria2 && wget() { aria2c -x16 -s16 "$@"; }
 # download pytorch compiled against CUDA 12.4 (or change to cu121 at the end if you have CUDA 12.1)
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-# download flash attention that matches your pytorch (add "--index-url full_url" to change to the index url specified by "full_url" if the official url doesn't work fast enough)
+# download flash attention that matches your pytorch (add "-i <mirror>" to download from faster mirror)
 pip install flash-attn --no-build-isolation
-# download other needed packages (add "--index-url" flag if necessary)
+# download other needed packages (add "-i <mirror>" to download from faster mirror)
 pip install transformers datasets "ray[default]" vllm deepspeed 
 # put in your HuggingFace access token to download model and dataset after running the following command
 huggingface-cli login
